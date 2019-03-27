@@ -48,7 +48,7 @@ async function ui (options = {}, context = process.cwd()) {
       directives: require.resolve('@vue/cli-ui/apollo-server/directives.js')
     }
   }
-
+  //vue ui命令分发到此处，调用cli-ui的server
   server(opts, () => {
     // Reset for yarn/npm to work correctly
     if (typeof nodeEnv === 'undefined') {
