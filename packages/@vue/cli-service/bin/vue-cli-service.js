@@ -4,6 +4,7 @@ const semver = require('semver')
 const { error } = require('@vue/cli-shared-utils')
 const requiredVersion = require('../package.json').engines.node
 
+//通过semver库来控制当面用户node环境是否符合要求
 if (!semver.satisfies(process.version, requiredVersion)) {
   error(
     `You are using Node ${process.version}, but vue-cli-service ` +

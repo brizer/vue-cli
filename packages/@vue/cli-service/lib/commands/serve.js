@@ -44,6 +44,7 @@ module.exports = (api, options) => {
     const isAbsoluteUrl = require('../util/isAbsoluteUrl')
 
     // resolve webpack config
+    //拿到合并后的webpack配置
     const webpackConfig = api.resolveWebpackConfig()
 
     // check for common config errors
@@ -131,6 +132,7 @@ module.exports = (api, options) => {
     }
 
     // create compiler
+    //最后将配置传给webpack，并通过webpack-dev-server启动服务
     const compiler = webpack(webpackConfig)
 
     // create server

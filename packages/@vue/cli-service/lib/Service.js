@@ -81,6 +81,8 @@ module.exports = class Service {
     })
 
     // apply webpack configs from project config file
+    //判断配置文件中是设置了chain用法的chainWebpack，还是简单配置的configureWebpack，
+    //将
     if (this.projectOptions.chainWebpack) {
       this.webpackChainFns.push(this.projectOptions.chainWebpack)
     }
@@ -228,6 +230,7 @@ module.exports = class Service {
     return chainableConfig
   }
 
+  //合并webpack配置
   resolveWebpackConfig (chainableConfig = this.resolveChainableWebpackConfig()) {
     if (!this.initialized) {
       throw new Error('Service must call init() before calling resolveWebpackConfig().')
@@ -236,6 +239,7 @@ module.exports = class Service {
     let config = chainableConfig.toConfig()
     const original = config
     // apply raw config fns
+    //将配置进行merge
     this.webpackRawConfigFns.forEach(fn => {
       if (typeof fn === 'function') {
         // function with optional return value
@@ -288,7 +292,7 @@ module.exports = class Service {
 
     return config
   }
-
+  //拿到用户配置信息 vue.config.js
   loadUserOptions () {
     // vue.config.js
     let fileConfig, pkgConfig, resolved, resolvedFrom
