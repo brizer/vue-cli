@@ -6,7 +6,7 @@
 const chalk = require('chalk')
 const semver = require('semver')
 const requiredVersion = require('../package.json').engines.node
-
+//首先判断node版本
 function checkNodeVersion (wanted, id) {
   if (!semver.satisfies(process.version, wanted)) {
     console.log(chalk.red(
@@ -44,7 +44,7 @@ if (
 
 const program = require('commander')
 const loadCommand = require('../lib/util/loadCommand')
-
+//对各个命令进行分流
 program
   .version(require('../package').version)
   .usage('<command> [options]')
