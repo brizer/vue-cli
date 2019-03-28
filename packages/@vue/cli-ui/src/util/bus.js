@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 const bus = new Vue()
-
+//简单的全局eventbus
 export default {
   install (Vue) {
     Vue.prototype.$bus = (type, ...args) => {

@@ -28,6 +28,7 @@ function genQuery (id, projectId) {
 
 export default {
   install (Vue) {
+    //通过mixin的方式，将公共数据和对应的方法挂载在Vue上。
     Vue.mixin({
       data () {
         return {

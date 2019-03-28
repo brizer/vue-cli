@@ -1,3 +1,6 @@
+/**
+ * 一个自定义插件，用来做响应式的尺寸
+ */
 export let responsive
 
 export default {
@@ -15,7 +18,7 @@ export default {
       },
       computed: finalOptions.computed
     })
-
+    //在屏幕尺寸变化后，将不同属性赋值到$responsive
     Object.defineProperty(Vue.prototype, '$responsive', {
       get: () => responsive
     })
