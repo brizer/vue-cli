@@ -1,4 +1,6 @@
+//统一引入所有插件
 import './plugins'
+//全局注册组件
 import './register-components'
 
 import Vue from 'vue'

@@ -24,7 +24,7 @@ import AnsiColors from './util/ansi-colors'
 
 Vue.use(InstantSearch)
 Vue.use(VueMeta)
-//针对不同尺寸，使用util中的responsive，给Vue原型上的$response，打上不同标识
+//针对不同尺寸，使用util中的responsive，给Vue原型上的$responsive，打上不同标识
 //方便在各个ui层做响应式处理
 Vue.use(Responsive, {
   computed: {
