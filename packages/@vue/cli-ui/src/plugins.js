@@ -12,7 +12,7 @@ import VueObserveVisibility from 'vue-observe-visibility'
 import * as Filters from './filters'
 //处理响应式
 import Responsive from './util/responsive'
-//通用数据的处理
+//通用数据的处理 
 import SharedData from './util/shared-data'
 import PluginAction from './util/plugin-action'
 import ClientState from './mixins/ClientState'
