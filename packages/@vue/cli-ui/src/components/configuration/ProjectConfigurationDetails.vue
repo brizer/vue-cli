@@ -44,7 +44,7 @@
       />
 
       <div class="vue-ui-spacer"/>
-
+      <!-- 使用到国际化的地方用$t配合key来使用 -->
       <VueButton
         :disabled="!hasPromptsChanged"
         icon-left="cancel"
@@ -52,7 +52,7 @@
         :label="$t('org.vue.views.project-configuration-details.actions.cancel')"
         @click="cancel()"
       />
-
+      <!-- 使用到国际化的地方用$t配合key来使用 -->
       <VueButton
         v-if="configuration && !hasPromptsChanged"
         icon-left="refresh"
@@ -60,7 +60,7 @@
         :label="$t('org.vue.views.project-configuration-details.actions.refresh')"
         @click="refetch()"
       />
-
+      <!-- 使用到国际化的地方用$t配合key来使用 -->
       <VueButton
         v-else
         icon-left="save"
