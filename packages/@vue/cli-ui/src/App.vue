@@ -2,10 +2,12 @@
   <div id="app" class="app">
     <ConnectionStatus v-if="ready" />
     <div v-if="ready" class="content">
+      <!-- 渲染一级路由 -->
       <router-view/>
     </div>
     <VueLoadingIndicator v-else class="app-init-loading overlay big accent"/>
 
+    <!-- 底部状态栏 -->
     <StatusBar/>
     <ClientAddonLoader/>
     <LocaleLoader/>

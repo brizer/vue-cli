@@ -10,6 +10,7 @@
 
       <div v-if="ready" class="content vue-ui-disable-scroll">
         <TopBar />
+        <!-- 用于渲染一级路由 -->
         <router-view class="router-view"/>
       </div>
     </div>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+// 入口组件
 import PROJECT_CWD_RESET from '@/graphql/project/projectCwdReset.gql'
 
 export default {

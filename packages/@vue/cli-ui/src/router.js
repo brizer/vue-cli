@@ -25,19 +25,23 @@ import PROJECT_CURRENT from './graphql/project/projectCurrent.gql'
 import CURRENT_PROJECT_ID_SET from './graphql/project/currentProjectIdSet.gql'
 
 Vue.use(Router)
-
+//路由配置
 const router = new Router({
   mode: 'history',
   routes: [
     {
+      //入口路由
       path: '/',
       component: ProjectHome,
+      //设置路由元信息，在$route.matched中取用
       meta: {
         needProject: true
       },
       children: [
+        //各个一级路由
         {
           path: '',
+          //路由名称，通过$route.name取用
           name: 'project-home',
           redirect: { name: 'project-dashboard' }
         },
@@ -61,6 +65,7 @@ const router = new Router({
           name: 'project-configurations',
           component: ProjectConfigurations,
           children: [
+            //二级路由
             {
               path: ':id',
               name: 'project-configuration-details',
@@ -74,6 +79,7 @@ const router = new Router({
           name: 'project-tasks',
           component: ProjectTasks,
           children: [
+            //二级路由
             {
               path: ':id',
               name: 'project-task-details',
@@ -114,6 +120,7 @@ const router = new Router({
       name: 'home',
       redirect: { name: 'project-home' }
     },
+    // 404路由
     {
       path: '*',
       name: 'not-found',

@@ -13,12 +13,14 @@
     </NavList>
 
     <div class="content vue-ui-disable-scroll">
+      <!-- 用于渲染二级路由 -->
       <router-view/>
     </div>
   </div>
 </template>
 
 <script>
+// 一个封装的导航加内容渲染组件
 export default {
   props: {
     items: {

@@ -42,6 +42,7 @@ Vue.use(Responsive, {
     }
   }
 })
+//使用vueui插件
 Vue.use(VueUi)
 Vue.use(PortalVue)
 Vue.use(VueObserveVisibility)

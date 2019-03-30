@@ -5,6 +5,7 @@ import './register-components'
 
 import Vue from 'vue'
 import App from './App.vue'
+//项目路由相关配置
 import router from './router'
 import i18n from './i18n'
 import { apolloProvider } from './vue-apollo'

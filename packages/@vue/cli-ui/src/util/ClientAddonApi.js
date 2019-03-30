@@ -15,6 +15,7 @@ export default class ClientAddonApi {
    * @param {string} id Component id
    * @param {object} definition Component definition
    */
+  //全局注册组件
   component (id, definition) {
     this.components.set(id, definition)
     const componentId = toComponentId(id)
