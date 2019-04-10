@@ -1,3 +1,4 @@
+// 为webpack的配置进行校验
 module.exports = function validateWebpackConfig (
   webpackConfig,
   api,

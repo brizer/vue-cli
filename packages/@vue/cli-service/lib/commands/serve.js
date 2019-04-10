@@ -44,20 +44,22 @@ module.exports = (api, options) => {
     const isAbsoluteUrl = require('../util/isAbsoluteUrl')
 
     // resolve webpack config
-    //拿到合并后的webpack配置
     const webpackConfig = api.resolveWebpackConfig()
 
     // check for common config errors
+    //校验webpack的配置文件格式是否正确
     validateWebpackConfig(webpackConfig, api, options)
 
     // load user devServer options with higher priority than devServer
     // in webpck config
+    //合并devServer参数
     const projectDevServerOptions = Object.assign(
       webpackConfig.devServer || {},
       options.devServer
     )
 
     // expose advanced stats
+    //如果开启了面板，使用面板插件
     if (args.dashboard) {
       const DashboardPlugin = require('../webpack/DashboardPlugin')
       ;(webpackConfig.plugins = webpackConfig.plugins || []).push(new DashboardPlugin({
@@ -72,6 +74,16 @@ module.exports = (api, options) => {
         app: api.resolve(entry)
       }
     }
+    //entry 最后看起来如此：
+    // entry:{
+    //   app:
+    //     [
+    //       '/Users/liufang/openSource/FunnyLiu/vueDemo/vueCliDemo/vueCliBase/basic/node_modules/webpack-dev-server/client/index.js?http://10.242.0.183:8080/sockjs-node',
+    //       '/Users/liufang/openSource/FunnyLiu/vueDemo/vueCliDemo/vueCliBase/basic/node_modules/webpack/hot/dev-server.js',
+    //       './src/main.ts'
+    //     ]
+    //   }
+    // }
 
     // resolve server options
     const useHttps = args.https || projectDevServerOptions.https || defaults.https
@@ -99,6 +111,7 @@ module.exports = (api, options) => {
     )
 
     // inject dev & hot-reload middleware entries
+    //如果不是生产环境，就开启热加载
     if (!isProduction) {
       const sockjsUrl = publicUrl
         // explicitly configured via devServer.public
@@ -124,15 +137,21 @@ module.exports = (api, options) => {
         // TODO custom overlay client
         // `@vue/cli-overlay/dist/client`
       ]
+      /**
+       * devClients就像：
+       *'/Users/liufang/openSource/FunnyLiu/vueDemo/vueCliDemo/vueCliBase/basic/node_modules/webpack-dev-server/client/index.js?http://10.242.0.183:8080/sockjs-node',
+       *'/Users/liufang/openSource/FunnyLiu/vueDemo/vueCliDemo/vueCliBase/basic/node_modules/webpack/hot/dev-server.js',
+       */
       if (process.env.APPVEYOR) {
         devClients.push(`webpack/hot/poll?500`)
       }
       // inject dev/hot client
+      //将热更新的配置加到entry中
       addDevClientToEntry(webpackConfig, devClients)
     }
 
     // create compiler
-    //最后将配置传给webpack，并通过webpack-dev-server启动服务
+    // lfremark: here is the place to set up the webpack config
     const compiler = webpack(webpackConfig)
 
     // create server
@@ -282,9 +301,15 @@ module.exports = (api, options) => {
     })
   })
 }
-
+/**
+ * add devClient to entry
+ * @param {object} config 
+ * @param {*} devClient 
+ */
 function addDevClientToEntry (config, devClient) {
   const { entry } = config
+  //lfremark: concat config entry with param devClient
+
   if (typeof entry === 'object' && !Array.isArray(entry)) {
     Object.keys(entry).forEach((key) => {
       entry[key] = devClient.concat(entry[key])

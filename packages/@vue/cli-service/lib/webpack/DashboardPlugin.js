@@ -2,6 +2,9 @@
 // Modified by Guillaume Chau (Akryum)
 
 /* eslint-disable max-params, max-statements */
+/**
+ * 一个让webpack打包内容显示非常完备的面板插件
+ */
 'use strict'
 
 const path = require('path')

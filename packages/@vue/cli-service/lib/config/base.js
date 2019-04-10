@@ -24,7 +24,7 @@ module.exports = (api, options) => {
         }
       }
     }
-
+    // webpack的一些基本配置
     webpackConfig
       .mode('development')
       .context(api.service.context)

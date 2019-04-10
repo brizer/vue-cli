@@ -31,6 +31,7 @@ module.exports = class Service {
     // found in package.json.
     // When useBuiltIn === false, built-in plugins are disabled. This is mostly
     // for testing.
+    //对插件进行拼接
     this.plugins = this.resolvePlugins(plugins, useBuiltIn)
     // resolve the default mode to use for each command
     // this is provided by plugins as module.exports.defaultModes
@@ -133,7 +134,7 @@ module.exports = class Service {
       }
     }
   }
-
+  //合并插件
   resolvePlugins (inlinePlugins, useBuiltIn) {
     const idToPlugin = id => ({
       id: id.replace(/^.\//, 'built-in:'),
@@ -148,6 +149,7 @@ module.exports = class Service {
       './commands/inspect',
       './commands/help',
       // config plugins are order sensitive
+      //所有的配置是通过内建插件的方式植入webpack配置中
       './config/base',
       './config/css',
       './config/dev',
@@ -180,6 +182,7 @@ module.exports = class Service {
             return idToPlugin(id)
           }
         })
+        //使用所有的内建插件
       plugins = builtInPlugins.concat(projectPlugins)
     }
 
