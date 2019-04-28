@@ -183,6 +183,8 @@ module.exports = (api, options) => {
         // allow other plugins to register middlewares, e.g. PWA
         api.service.devServerConfigFns.forEach(fn => fn(app, server))
         // apply in project middlewares
+        //brizer: can use it to mock data ,such as:https://github.com/FunnyLiu/vueDemo/blob/master/vueCliDemo/vueCliBase/basic/vue.config.js#L6
+        //brizer: it is https://webpack.js.org/configuration/dev-server/#devserverbefore
         projectDevServerOptions.before && projectDevServerOptions.before(app, server)
       }
     }))
